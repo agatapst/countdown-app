@@ -1,59 +1,23 @@
 <style>
-  :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .headerWrapper {
+    margin-bottom: 20px;
+    white-space: nowrap;
+    width: 100%;
   }
 
   h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
+  h2 {
+    display: inline;
+    max-width: 100%;
   }
 
-  p {
-    margin: 0;
-  }
-
-  .content {
-    display: flex;
- 
-    padding: 0 16px;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-  }
-
-  .timer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 80px 32px 32px;
-  }
-
-
-  .wrapper {
-    /* position: absolute;
-    visibility: hidden; */
-    white-space: nowrap;
-  }
-
-  .header {
-    margin-bottom: 20px;
-    font-size: 16px;
-    font-size: 4vw;
-
-  }
-
- 
   .form {
     display: flex;
     flex-direction: column;
@@ -64,26 +28,37 @@
       flex-direction: row;
     }
   }
-
 </style>
 
-
 <div class="content" role="main">
-  <div class="timer" *ngIf="(timeLeft$ | async) as t; else null">
-      <div class="header">
-        <h1>Time to {{ eventTitle }} </h1>
-        <span>{{ t }} </span>
-      </div>
-    </div>
+  <div class="headerWrapper">
+    <h1 [ngStyle]="{ 'font-size': eventTitleFontSize + 'vw' }" #header>
+      Time to {{ eventTitle }}
+    </h1>
+  </div>
+  <div class="headerWrapper">
+    <h2
+      *ngIf="timeLeft$ | async as time; else null"
+      [ngStyle]="{ 'font-size': eventSubtitleFontSize + 'vw' }"
+      #subheader
+    >
+      {{ time.days }} days, {{ time.hours }}h, {{ time.minutes }}m,
+      {{ time.seconds }}s
+    </h2>
+  </div>
 
-    <div class="form"> 
-      <label for="eventTitle">Title:</label>
-      <input type="text" [(ngModel)]="eventTitle" />
-      <label for="date">Date:</label>
-      <input type="date" [(ngModel)]="eventTime" />
-    </div>
+  <div class="form">
+    <label for="eventTitle">Title:</label>
+    <input
+      type="text"
+      [ngModel]="eventTitle"
+      (ngModelChange)="onTitleChange($event)"
+    />
+    <label for="date">Date:</label>
+    <input type="date" [(ngModel)]="eventTime" />
+  </div>
 
-    <!-- <ng-template #sorry>
+  <!-- <ng-template #sorry>
       Sorry, something went wrong...
     </ng-template> -->
-  </div>
+</div>
