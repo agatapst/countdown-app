@@ -4,6 +4,7 @@ import { Observable, timer } from "rxjs";
 import { map, shareReplay } from "rxjs/operators";
 import { differenceInSeconds } from "date-fns"
 import {  formatDuration, intervalToDuration } from 'date-fns'
+import { EventStorage } from './eventStorage';
 
 @Component({
   selector: 'app-root',
@@ -17,16 +18,19 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('subheader') subheader: ElementRef<HTMLHeadingElement>;
 
   title = 'countdown-app';
-  eventTitle = "Your event";
   eventTime = '2022-10-26';
   eventTitleFontSize: number = 8;
   eventSubtitleFontSize: number = 12;
+  eventTitle: string
   timeLeft$: Observable<Duration>;
+  eventStorage: EventStorage;
   
   constructor() {
     this.timeLeft$ = timer(0, 1000).pipe(
       map(() => intervalToDuration({ start: Date.parse(this.eventTime), end: Date.now() }))
     );
+    this.eventStorage = new EventStorage();
+    this.eventTitle = this.eventStorage.getData('eventTitle') || "Your event";
   }
 
   ngAfterViewInit() {
@@ -36,6 +40,7 @@ export class AppComponent implements AfterViewInit {
   onTitleChange(newTitle: string) {
     this.eventTitle = newTitle;
     setTimeout(() => this.fitText(this.header.nativeElement), 10);
+    this.eventStorage.saveData('eventTitle', newTitle)
   }
 
   private fitText(element: HTMLElement) {
