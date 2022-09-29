@@ -22,12 +22,13 @@
     display: flex;
     flex-direction: column;
     width: 80%;
+    margin-top: 64px;
   }
 
   .input-wrapper {
     display: flex;
     flex-direction: column;
-    margin-bottom: 24px;
+    margin-bottom: 36px;
     position: relative;
     width: 100%;
     margin-right: 48px;
@@ -52,12 +53,20 @@
   <div class="form">
     <div class="input-wrapper">
       <label for="eventTitle">Title</label>
-      <input type="text" [(ngModel)]="eventTitle" />
+      <input
+        type="text"
+        [ngModel]="eventTitle"
+        (ngModelChange)="onEventTitleChange($event)"
+      />
     </div>
 
     <div class="input-wrapper">
       <label for="date">Date</label>
-      <input type="date" [(ngModel)]="eventTime" />
+      <input
+        type="date"
+        [ngModel]="eventTime"
+        (ngModelChange)="onEventTimeChange($event)"
+      />
     </div>
   </div>
 

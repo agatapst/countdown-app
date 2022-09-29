@@ -19,7 +19,7 @@ import { EventStorage } from './eventStorage';
 })
 export class AppComponent {
   title = 'countdown-app';
-  eventTime = '2022-10-26';
+  eventTime: string;
   eventTitle: string;
   timeLeft$: Observable<Duration>;
   eventStorage: EventStorage;
@@ -34,7 +34,19 @@ export class AppComponent {
       )
     );
     this.eventStorage = new EventStorage();
-    this.eventTitle = this.eventStorage.getData('eventTitle') || 'Your event';
+    this.eventTitle =
+      this.eventStorage.getData('eventTitle') || 'Midsummer Eve';
+    this.eventTime = this.eventStorage.getData('eventTime') || '2023-06-22';
+  }
+
+  onEventTitleChange(newTitle: string) {
+    this.eventTitle = newTitle;
+    this.eventStorage.saveData('eventTitle', newTitle);
+  }
+
+  onEventTimeChange(newTime: string) {
+    this.eventTime = newTime;
+    this.eventStorage.saveData('eventTime', newTime);
   }
 
   formatTime({
