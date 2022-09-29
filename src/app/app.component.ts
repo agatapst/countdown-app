@@ -19,8 +19,8 @@ export class AppComponent implements AfterViewInit {
   title = 'countdown-app';
   eventTitle = "Your event";
   eventTime = '2022-10-26';
-  eventTitleFontSize: number = 10;
-  eventSubtitleFontSize: number = 8;
+  eventTitleFontSize: number = 8;
+  eventSubtitleFontSize: number = 12;
   timeLeft$: Observable<Duration>;
   
   constructor() {

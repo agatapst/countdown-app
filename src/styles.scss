@@ -3,4 +3,34 @@ body {
   font-family: 'Open Sans';
   margin: 0;
   padding: 0;
+  background-color: #87B738;
+}
+
+input {
+  border-style: solid;
+  border-color: white;
+  color: white;
+  padding: 18px;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #87B738;
+  height: 18px;
+
+  svg {
+    color: white;
+  }
+}
+
+label {
+  color: white;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background: #87B738;
+  padding: 0 4px;
+}
+
+h1,
+span {
+  color: #FFDF5C;
 }

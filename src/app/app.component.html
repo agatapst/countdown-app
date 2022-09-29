@@ -21,11 +21,22 @@
   .form {
     display: flex;
     flex-direction: column;
+    width: 80%;
+  }
+
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    position: relative;
+    width: 100%;
+    margin-right: 48px;
   }
 
   @media screen and (min-width: 575px) {
     .form {
       flex-direction: row;
+      justify-content: space-between;
     }
   }
 </style>
@@ -37,25 +48,30 @@
     </h1>
   </div>
   <div class="headerWrapper">
-    <h2
+    <span
       *ngIf="timeLeft$ | async as time; else null"
       [ngStyle]="{ 'font-size': eventSubtitleFontSize + 'vw' }"
       #subheader
     >
       {{ time.days }} days, {{ time.hours }}h, {{ time.minutes }}m,
       {{ time.seconds }}s
-    </h2>
+    </span>
   </div>
 
   <div class="form">
-    <label for="eventTitle">Title:</label>
-    <input
-      type="text"
-      [ngModel]="eventTitle"
-      (ngModelChange)="onTitleChange($event)"
-    />
-    <label for="date">Date:</label>
-    <input type="date" [(ngModel)]="eventTime" />
+    <div class="input-wrapper">
+      <label for="eventTitle">Title</label>
+      <input
+        type="text"
+        [ngModel]="eventTitle"
+        (ngModelChange)="onTitleChange($event)"
+      />
+    </div>
+
+    <div class="input-wrapper">
+      <label for="date">Date</label>
+      <input type="date" [(ngModel)]="eventTime" />
+    </div>
   </div>
 
   <!-- <ng-template #sorry>
