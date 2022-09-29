@@ -42,30 +42,17 @@
 </style>
 
 <div class="content" role="main">
-  <div class="headerWrapper">
-    <h1 [ngStyle]="{ 'font-size': eventTitleFontSize + 'vw' }" #header>
-      Time to {{ eventTitle }}
-    </h1>
-  </div>
-  <div class="headerWrapper">
-    <span
-      *ngIf="timeLeft$ | async as time; else null"
-      [ngStyle]="{ 'font-size': eventSubtitleFontSize + 'vw' }"
-      #subheader
-    >
-      {{ time.days }} days, {{ time.hours }}h, {{ time.minutes }}m,
-      {{ time.seconds }}s
-    </span>
-  </div>
+  <full-width-header [text]="'Time to ' + eventTitle"></full-width-header>
+
+  <full-width-header
+    *ngIf="timeLeft$ | async as time; else null"
+    [text]="formatTime(time)"
+  ></full-width-header>
 
   <div class="form">
     <div class="input-wrapper">
       <label for="eventTitle">Title</label>
-      <input
-        type="text"
-        [ngModel]="eventTitle"
-        (ngModelChange)="onTitleChange($event)"
-      />
+      <input type="text" [(ngModel)]="eventTitle" />
     </div>
 
     <div class="input-wrapper">
