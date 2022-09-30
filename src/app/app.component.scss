@@ -1,0 +1,36 @@
+@import "../styles/mixins";
+
+.content {
+  @include column;
+  align-items: center;
+  padding: 20px;
+
+  :first-child {
+    margin-bottom: 48px;
+
+    @media screen and (min-width: 575px) {
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.form {
+  @include column;
+  width: 80%;
+  margin-top: 64px;
+}
+
+.input-wrapper {
+  @include column;
+  margin-bottom: 36px;
+  position: relative;
+  width: 100%;
+  margin-right: 48px;
+}
+
+@media screen and (min-width: 575px) {
+  .form {
+    @include row;
+    justify-content: space-between;
+  }
+}

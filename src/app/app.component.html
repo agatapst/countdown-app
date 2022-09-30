@@ -1,52 +1,8 @@
-<style>
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-
-  .headerWrapper {
-    margin-bottom: 20px;
-    white-space: nowrap;
-    width: 100%;
-  }
-
-  h1,
-  h2 {
-    display: inline;
-    max-width: 100%;
-  }
-
-  .form {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin-top: 64px;
-  }
-
-  .input-wrapper {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 36px;
-    position: relative;
-    width: 100%;
-    margin-right: 48px;
-  }
-
-  @media screen and (min-width: 575px) {
-    .form {
-      flex-direction: row;
-      justify-content: space-between;
-    }
-  }
-</style>
-
 <div class="content" role="main">
   <full-width-header [text]="'Time to ' + eventTitle"></full-width-header>
 
   <full-width-header
-    *ngIf="timeLeft$ | async as time; else null"
+    *ngIf="timeLeft$ | async as time; else error"
     [text]="formatTime(time)"
   ></full-width-header>
 
@@ -70,7 +26,5 @@
     </div>
   </div>
 
-  <!-- <ng-template #sorry>
-      Sorry, something went wrong...
-    </ng-template> -->
+  <ng-template #error>Sorry, something went wrong...</ng-template>
 </div>

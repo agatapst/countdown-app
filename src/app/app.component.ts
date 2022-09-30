@@ -1,15 +1,7 @@
-import { NgIfContext } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable, timer } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
-import { differenceInSeconds } from 'date-fns';
-import { formatDuration, intervalToDuration } from 'date-fns';
+import { map } from 'rxjs/operators';
+import { intervalToDuration } from 'date-fns';
 import { EventStorage } from './eventStorage';
 
 @Component({
@@ -18,11 +10,11 @@ import { EventStorage } from './eventStorage';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'countdown-app';
   eventTime: string;
   eventTitle: string;
   timeLeft$: Observable<Duration>;
   eventStorage: EventStorage;
+  error: Error;
 
   constructor() {
     this.timeLeft$ = timer(0, 1000).pipe(
@@ -36,7 +28,7 @@ export class AppComponent {
     this.eventStorage = new EventStorage();
     this.eventTitle =
       this.eventStorage.getData('eventTitle') || 'Midsummer Eve';
-    this.eventTime = this.eventStorage.getData('eventTime') || '2023-06-22';
+    this.eventTime = this.eventStorage.getData('eventTime') || '2023-06-23';
   }
 
   onEventTitleChange(newTitle: string) {
