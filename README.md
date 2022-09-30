@@ -2,7 +2,7 @@
 
 You can set an event title and a date that you are waiting for.
 
-For testing, check out [deployed page](https://agatapst.github.io/countdown-app/).
+For testing, check out [Netlify page](agatapst-countdown-app.netlify.app).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.4.
 
