@@ -1,27 +1,44 @@
-# CountdownApp
+# Countdown app ⌛
+
+You can set an event title and a date that you are waiting for.
+
+For testing, check out [deployed page](https://agatapst.github.io/countdown-app/).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.4.
 
-## Development server
+![Website screenshot](screenshot.png)
+
+## Table of Contents
+
+- General info
+- Setup
+- Available scripts
+- Technologies
+
+## General info
+
+It is be possible to define the end date and the name of the event taking place on that day. The countdown should always start from the current time and it should display the
+time remaining to your specified end date. The event name and the specified end date are persisted between page reloads.
+
+## Setup
+
+### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
+### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
+### Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Technologies
+
+- Angular 14.2.4
+- Typescript 4.7.2
