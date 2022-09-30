@@ -22,6 +22,7 @@
         type="date"
         [ngModel]="eventTime"
         (ngModelChange)="onEventTimeChange($event)"
+        min="{{ date | date: 'yyyy-MM-dd' }}"
       />
     </div>
   </div>

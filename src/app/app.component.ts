@@ -15,6 +15,7 @@ export class AppComponent {
   timeLeft$: Observable<Duration>;
   eventStorage: EventStorage;
   error: Error;
+  date: Date;
 
   constructor() {
     this.timeLeft$ = timer(0, 1000).pipe(
@@ -29,6 +30,7 @@ export class AppComponent {
     this.eventTitle =
       this.eventStorage.getData('eventTitle') || 'Midsummer Eve';
     this.eventTime = this.eventStorage.getData('eventTime') || '2023-06-23';
+    this.date = new Date();
   }
 
   onEventTitleChange(newTitle: string) {
