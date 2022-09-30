@@ -6,7 +6,7 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild,
-} from '@angular/core';
+} from '@angular/core'
 
 @Component({
   selector: 'full-width-header',
@@ -44,29 +44,29 @@ import {
   ],
 })
 export class FullWidthHeaderComponent implements AfterViewInit, OnChanges {
-  @Input() text: string;
-  @Input() subheader: boolean = false;
-  @ViewChild('header') header: ElementRef<HTMLHeadingElement>;
+  @Input() text: string
+  @Input() subheader: boolean = false
+  @ViewChild('header') header: ElementRef<HTMLHeadingElement>
 
-  headerFontSize: number = 10;
+  headerFontSize: number = 10
 
   ngAfterViewInit(): void {
-    this.scheduleResizeHeader();
+    this.scheduleResizeHeader()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['text'].currentValue) {
-      this.scheduleResizeHeader();
+      this.scheduleResizeHeader()
     }
   }
 
   private scheduleResizeHeader() {
-    setTimeout(() => this.fitText(this.header.nativeElement), 0);
+    setTimeout(() => this.fitText(this.header.nativeElement), 0)
   }
 
   private fitText(element: HTMLElement) {
-    const parentWidth = element.parentElement!.offsetWidth;
-    const elementWidth = element.offsetWidth;
-    this.headerFontSize = this.headerFontSize * (parentWidth / elementWidth);
+    const parentWidth = element.parentElement!.offsetWidth
+    const elementWidth = element.offsetWidth
+    this.headerFontSize = this.headerFontSize * (parentWidth / elementWidth)
   }
 }
