@@ -3,6 +3,7 @@
 
   <full-width-header
     *ngIf="timeLeft$ | async as time; else error"
+    [subheader]="true"
     [text]="formatTime(time)"
   ></full-width-header>
 
